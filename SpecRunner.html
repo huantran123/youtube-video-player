@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/react/umd/react.development.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="node_modules/prop-types/prop-types.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom-test-utils.development.js"></script>
+    <script src="node_modules/react-test-renderer/umd/react-test-renderer-shallow.development.js"></script>
+    <script src="node_modules/lodash/lodash.js"></script>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script src="node_modules/sinon/pkg/sinon.js"></script>
+    <script>
+      mocha.setup('bdd');
+      var expect = chai.expect;
+      $(function() {
+        window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run()
+      });
+    </script>
+
+    <!-- include spec files here... -->
+    <script type="module" src="compiled/spec/data/fakeVideoData.js"></script>
+    <script type="module" src="compiled/spec/data/moreFakeVideoData.js"></script>
+    <script type="module" src="compiled/spec/components/Wrapper.js"></script>
+    <script type="module" src="compiled/spec/components/VideoListSpec.js"></script>
+    <script type="module" src="compiled/spec/components/VideoListEntrySpec.js"></script>
+    <script type="module" src="compiled/spec/components/VideoPlayerSpec.js"></script>
+    <script type="module" src="compiled/spec/components/AppSpec.js"></script>
+    <script type="module" src="compiled/spec/lib/searchYouTubeSpec.js"></script>
+    <script type="module" src="compiled/spec/components/SearchSpec.js"></script>
+
+  </head>
+  <body>
+    <div id="mocha"></div>
+  </body>
+</html>
