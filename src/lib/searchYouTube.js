@@ -5,39 +5,21 @@ $.ajaxPrefilter(function (settings, _, jqXHR) {
 });
 
 var searchYouTube = (query, callback) => {
+  if (query === undefined) {
+    var dataVal = {order: '-createAt'};
+  } else {
+    var dataVal = {q: query};
+  }
   $.ajax({
     url: 'https://app-hrsei-api.herokuapp.com/api/recastly/videos/',
     type: 'GET',
-    data: { q: query },
+    data: dataVal,
     contentType: 'application/json',
     success: callback,
     error: function(error) {
       console.error('FAIL: ', error);
     }
   });
-
-  // var getData = function(sucessCB, errorCB) {
-  //   $.ajax({
-  //     url: 'https://app-hrsei-api.herokuapp.com/api/recastly/videos/',
-  //     type: 'GET',
-  //     data: { q: query },
-  //     contentType: 'application/json',
-  //     // success: function(data) {
-  //     //   console.log(data);
-  //     // },
-  //     success: sucessCB,
-  //     error: errorCB || function(error) {
-  //       console.error('FAIL: ', error);
-  //     }
-  //   });
-  // };
-
-  // getData((data) => {
-  //   console.log(data);
-  // });
-
-
-
 
 };
 
