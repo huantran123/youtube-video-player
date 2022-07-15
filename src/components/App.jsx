@@ -12,14 +12,6 @@ class App extends React.Component {
       videoData: [],
       currentVideo: {},
     };
-    searchYouTube('react', (data) => {
-      console.log(data);
-      this.setState({
-        videoData: data,
-        currentVideo: data[0]
-      });
-      console.log('current: ', this.state.currentVideo);
-    });
   }
 
   titleOnClick(event) {
@@ -39,7 +31,7 @@ class App extends React.Component {
 
   // componentDidMount() {
   //   this.timerID = setInterval(
-  //     () => this.updateVideos('react'),
+  //() => th     is.updateVideos('react'),
   //     1000
   //   );
   // }
@@ -47,32 +39,43 @@ class App extends React.Component {
   // componentWillUnmount() {
   //   clearInterval(this.timerID);
   // }
-
-
-
   updateVideos(query) {
     searchYouTube(query, (data) => {
-      console.log(data);
       this.setState({
         videoData: data,
         currentVideo: data[0]
       });
-      console.log('current: ', this.state.currentVideo);
     });
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
-    this.updateVideos('query');
+    this.updateVideos('react');
   }
 
+  searchOnChange(event) {
+    if (event.target.className !== 'form-control') {
+      return;
+    }
+    console.log(event.target.value);
+    var value = event.target.value;
+    var debounce = function(func, interval) {
+      var timeOut;
+      return (...arg) => {
+        clearTimeout(timeOut);
+        timeOut = setTimeout(() => { func.apply(this, arg); }, interval);
+      };
+    };
+
+    var search = debounce(() => { this.updateVideos(value); }, 500);
+    search();
+
+  }
 
   render() {
-
     return (
       <div>
         <nav className="navbar">
-          <div className="col-md-6 offset-md-3">
+          <div onChange={this.searchOnChange.bind(this)} className="col-md-6 offset-md-3">
             <Search />
           </div>
         </nav>
