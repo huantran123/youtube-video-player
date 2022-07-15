@@ -20,6 +20,7 @@
 import App from './App.js';
 
 var VideoListEntry = (props) => (
+
   <div className="video-list-entry media">
     <div className="media-left media-middle">
       <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />

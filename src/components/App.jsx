@@ -9,9 +9,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoData: exampleVideoData,
-      currentVideo: exampleVideoData[0],
+      videoData: [],
+      currentVideo: {},
     };
+    searchYouTube('react', (data) => {
+      console.log(data);
+      this.setState({
+        videoData: data,
+        currentVideo: data[0]
+      });
+      console.log('current: ', this.state.currentVideo);
+    });
   }
 
   titleOnClick(event) {
@@ -19,7 +27,7 @@ class App extends React.Component {
       return;
     }
     var currentId = event.target.id;
-    for (var video of exampleVideoData) {
+    for (var video of this.state.videoData) {
       if (video.id.videoId === currentId) {
         this.setState({
           currentVideo: video
@@ -29,9 +37,38 @@ class App extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   this.timerID = setInterval(
+  //     () => this.updateVideos('react'),
+  //     1000
+  //   );
+  // }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.timerID);
+  // }
+
+
+
+  updateVideos(query) {
+    searchYouTube(query, (data) => {
+      console.log(data);
+      this.setState({
+        videoData: data,
+        currentVideo: data[0]
+      });
+      console.log('current: ', this.state.currentVideo);
+    });
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.updateVideos('query');
+  }
 
 
   render() {
+
     return (
       <div>
         <nav className="navbar">

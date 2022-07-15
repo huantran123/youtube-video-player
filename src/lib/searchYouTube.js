@@ -5,15 +5,16 @@ $.ajaxPrefilter(function (settings, _, jqXHR) {
 });
 
 var searchYouTube = (query, callback) => {
-  if (query === undefined) {
-    var dataVal = {order: '-createAt'};
-  } else {
-    var dataVal = {q: query};
-  }
+  // if (query === undefined) {
+  //   var dataVal = {order: '-createAt'};
+  // } else {
+  //   var dataVal = {q: query};
+  // }
+  // console.log(dataVal);
   $.ajax({
     url: 'https://app-hrsei-api.herokuapp.com/api/recastly/videos/',
     type: 'GET',
-    data: dataVal,
+    data: {q: query},
     contentType: 'application/json',
     success: callback,
     error: function(error) {
