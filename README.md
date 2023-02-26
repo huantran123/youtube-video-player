@@ -19,7 +19,7 @@
     npm install
   ```
   
-3. In the folder `/src/config/`, duplicate the file config.example.js and rename to config.js, grab the Youtube API key and place to the string
+3. In the folder `/src/config/`, duplicate the file `config.example.js` and rename to config.js, grab the Youtube API key and place to the string
 
   ```
     var YOUTUBE_API_KEY = '<YOUR_YOUTUBE_API_KEY>';
